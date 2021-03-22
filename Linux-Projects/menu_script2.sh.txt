@@ -1,0 +1,146 @@
+#!/bin/bash
+#Fernando Ames
+#3/4/2019
+#CS 140u
+
+
+clear #clear the screen
+echo 
+echo "Hello" $USER #display welcome message to user
+echo 
+echo "Main Menu"
+echo 
+
+menu() 
+{
+echo "1 -- Display users Currently logged in"
+echo "2 -- Display a calendar for a specific month and year"
+echo "3 -- Display the current Directory path"
+echo "4 -- Change Directory"
+echo "5 -- Long listing of visible files in the current Directory"
+echo "6 -- Display current time and fate and calendar"
+echo "7 -- Start the vim editor"
+echo "8 -- Email a file to a user"
+echo "9 -- Quit"
+}
+
+menu # function call
+
+echo "Do you want to continue (y/n) : "
+read quit 
+
+while [[ "$quit" == "y" ]];
+do
+  echo -n "Make your selection: "
+  echo 
+  read -n1 selection 
+  case "$selection" in 
+  1) 
+      echo "Here is a list of users currently logged on:"
+      echo
+      who 
+      ;;
+  2)
+      echo "Display a calendar for specific month and year"
+      echo "Enter month: "
+      read -n2 m 
+
+      echo "Please enter a year between 1950 and 2050:"
+      read -n4 y
+
+      if [[ $y -lt 1950 || $y -gt 2050 ]];
+      then 
+          echo "You haven't read the instruction properly above, try again"
+          break 
+      fi 
+
+      cal $m $y 
+
+      ;;
+  3) 
+      echo "Current path of the working Directory"
+      echo 
+      pwd 
+
+      ;;
+  4) 
+      echo "Enter the path where you want to go:"
+      echo 
+      read directory
+
+      if [[ -d $directory ]];
+      then 
+          cd $directory
+      else 
+          cd $HOME
+      fi 
+
+      ;;
+  5)
+      echo "Long listing of a visible files in the current Directory"
+      echo 
+      ls -l | less 
+
+      ;;
+  6)
+      echo "Displaying current time and date and calendar"
+      echo 
+      date
+
+      ;;
+  7)
+      echo "Start the vim editor"
+      echo 
+      echo "Enter filename to create:"
+      read filename
+      if [[ ! -f $filename ]];
+      then 
+          touch $filename
+          vim $filename
+      elif [[ temp=`file $filename | grep -o text` && "$temp" == "text" ]]
+      then 
+          vim $filename
+      else 
+          vim $filename
+      fi 
+
+      ;;
+  8)
+      echo "Emailer Program"
+      echo 
+      echo "Please enter username:"
+      read mUsername
+
+      getent passwd $musername > /dev/null 2&>1
+      if [ $mUsername -eq 0 ];
+      then 
+          echo "Enter Subject: "
+          read mSubject
+          echo "Please enter the name of the file to be attached:"
+          read mAttach
+          temp=`file $mAttach | grep -o text`
+          if [[ "$temp" == "text" || ! -d $temp ]];
+          then 
+              mail -s $mSubject $mUsername < $mAttach
+          else 
+              echo "Your attachment is not a ordinary file"
+              echo 
+          fi
+      else 
+          echo "No, the user does not exist"
+      fi 
+
+      echo "Your mail will be sent with the attachment."
+      echo 
+
+      ;;
+  9)
+      kill -SIGINT $$
+      ;;
+  *)
+      echo "Invalid Selection."
+      echo "Select a valid option."
+      ;;
+
+esac
+done

@@ -1,0 +1,202 @@
+
+Fernando Ames
+
+02/18/2019
+
+Lab 6
+
+1) fernando.ames@syccuxas01:~> ps ax   // Option 'a' instructs 'ps' to list the processes of all users on the system rather than just those of the current user. Similarly, the 'x' option includes processes that are not running in a terminal, such as daemon processes. So that is why all the processes in the system are listed
+
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     8:24 /sbin/init showopts
+    2 ?        S      0:01 [kthreadd]
+    3 ?        S      1:35 [ksoftirqd/0]
+    5 ?        S<     0:00 [kworker/0:0H]
+    7 ?        S      0:53 [migration/0]
+    8 ?        S      0:00 [rcuc/0]
+ 
+
+
+2) fernando.ames@syccuxas01:~> ps -ef  // this command shows all the process currently running.
+
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 Jan04 ?        00:08:24 /sbin/init showopts
+root         2     0  0 Jan04 ?        00:00:01 [kthreadd]
+root         3     2  0 Jan04 ?        00:01:35 [ksoftirqd/0]
+root         5     2  0 Jan04 ?        00:00:00 [kworker/0:0H]
+root         7     2  0 Jan04 ?        00:00:53 [migration/0]
+root         8     2  0 Jan04 ?        00:00:00 [rcuc/0]
+root         9     2  0 Jan04 ?        00:00:00 [rcub/0]
+root        10     2  0 Jan04 ?        00:09:55 [rcu_preempt]
+root        11     2  0 Jan04 ?        00:08:41 [rcuop/0]
+root        12     2  0 Jan04 ?        00:08:56 [rcuop/1]
+root        13     2  0 Jan04 ?        00:00:00 [rcu_bh]
+root        14     2  0 Jan04 ?        00:00:00 [rcuob/0]
+root        15     2  0 Jan04 ?        00:00:00 [rcuob/1]
+root        16     2  0 Jan04 ?        00:00:00 [rcu_sched]
+root        17     2  0 Jan04 ?        00:00:00 [rcuos/0]
+
+
+
+
+
+
+
+
+
+3) fernando.ames@syccuxas01:~> ps aux // this command filters the result based on the CPU usage.
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1  39912  4396 ?        Ss   Jan04   8:24 /sbin/init show
+root         2  0.0  0.0      0     0 ?        S    Jan04   0:01 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    Jan04   1:35 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   Jan04   0:00 [kworker/0:0H]
+root         7  0.0  0.0      0     0 ?        S    Jan04   0:53 [migration/0]
+root         8  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcuc/0]
+root         9  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcub/0]
+root        10  0.0  0.0      0     0 ?        R    Jan04   9:55 [rcu_preempt]
+root        11  0.0  0.0      0     0 ?        S    Jan04   8:41 [rcuop/0]
+root        12  0.0  0.0      0     0 ?        S    Jan04   8:56 [rcuop/1]
+root        13  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcu_bh]
+root        14  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcuob/0]
+root        15  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcuob/1]
+root        16  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcu_sched]
+root        17  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcuos/0]
+root        18  0.0  0.0      0     0 ?        S    Jan04   0:00 [rcuos/1]
+
+4) fernando.ames@syccuxas01:~> ps -ef f // this command performs a full-format listing.
+
+UID        PID  PPID  C STIME TTY      STAT   TIME CMD
+root         2     0  0 Jan04 ?        S      0:01 [kthreadd]
+root         3     2  0 Jan04 ?        S      1:35  \_ [ksoftirqd/0]
+root         5     2  0 Jan04 ?        S<     0:00  \_ [kworker/0:0H]
+root         7     2  0 Jan04 ?        S      0:53  \_ [migration/0]
+root         8     2  0 Jan04 ?        S      0:00  \_ [rcuc/0]
+root         9     2  0 Jan04 ?        S      0:00  \_ [rcub/0]
+root        10     2  0 Jan04 ?        S      9:55  \_ [rcu_preempt]
+root        11     2  0 Jan04 ?        S      8:41  \_ [rcuop/0]
+root        12     2  0 Jan04 ?        S      8:56  \_ [rcuop/1]
+root        13     2  0 Jan04 ?        S      0:00  \_ [rcu_bh]
+root        14     2  0 Jan04 ?        S      0:00  \_ [rcuob/0]
+root        15     2  0 Jan04 ?        S      0:00  \_ [rcuob/1]
+root        16     2  0 Jan04 ?        S      0:00  \_ [rcu_sched]
+root        17     2  0 Jan04 ?        S      0:00  \_ [rcuos/0]
+root        18     2  0 Jan04 ?        S      0:00  \_ [rcuos/1]
+root        19     2  0 Jan04 ?        S      0:16  \_ [watchdog/0]
+root        20     2  0 Jan04 ?        S      0:13  \_ [watchdog/1]
+root        21     2  0 Jan04 ?        S      0:00  \_ [rcuc/1]
+
+5) fernando.ames@syccuxas01:~> ps -f -u benjamin.schaeffer15  // this command displays a user’s processes
+
+UID        PID  PPID  C STIME TTY          TIME CMD
+
+6) fernando.ames@syccuxas01:~> ps aux --sort=-pcpu,+pmem // this command filters all the processes running based on the CPU & memory usage and sorts & lists the output.
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      2003  5.5  0.5 288884 21880 ?        Ssl  Jan04 3590:34 /usr/lib/accou
+root      1571  1.8  8.1 421352 332348 ?       S    Jan04 1180:09 python /usr/bi
+gdm      12300  1.1 15.2 2171880 618424 ?      Sl   Feb13  89:43 gnome-shell --m
+root      2257  0.4  0.5 1256580 21524 ?       Ssl  Jan04 291:16 /opt/isec/ens/t
+root     25423  0.3  8.7 1765224 355588 ?      Sl   12:26   1:49 /opt/isec/ens/t
+maryam.+ 16207  0.2  0.0  12888  1884 pts/53   S+   18:59   0:15 watch -n 1 upti
+nscd       988  0.1  0.2 2707796 9364 ?        Ssl  Jan04 128:42 /usr/sbin/nscd 
+swiagent  2106  0.1  0.3 1141216 13088 ?       Sl   Jan04  90:54 /opt/SolarWinds
+root         2  0.0  0.0      0     0 ?        S    Jan04   0:01 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    Jan04   1:35 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   Jan04   0:00 [kworker/0:0H]
+root         7  0.0  0.0      0     0 ?        S    Jan04   0:53 [migration/0]
+
+7) fernando.ames@syccuxas01:~> ps aux --sort=-pcpu | head -5 // this command displays the top 5 processes consuming most of the CPU.
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      2003  5.5  0.5 288884 21880 ?        Ssl  Jan04 3590:38 /usr/lib/accounts-daemon
+root      1571  1.8  8.1 421352 332348 ?       S    Jan04 1180:12 python /usr/bin/denyhosts.py --daemon --config=/usr/share/denyhosts/denyhosts.cfg
+gdm      12300  1.1 15.2 2171880 618436 ?      Sl   Feb13  89:45 gnome-shell --mode=gdm
+root      2257  0.4  0.5 1256580 21524 ?       Ssl  Jan04 291:16 /opt/isec/ens/threatprevention/bin/isectpd
+
+
+8) fernando.ames@syccuxas01:~> ps -f --forest // this command displays hierarchy of a process in tree style.
+
+UID        PID  PPID  C STIME TTY          TIME CMD
+fernand+  8465  8464  0 20:14 pts/19   00:00:00 -bash
+fernand+ 24221  8465  0 21:10 pts/19   00:00:00  \_ ps -f --forest
+
+
+
+9) fernando.ames@syccuxas01:~> ps -e -o pid,uname,pcpu,pmem,comm // this command is used to shows only the pid, username, CPU, memory and command columns.
+
+  PID USER     %CPU %MEM COMMAND
+    1 root      0.0  0.1 systemd
+    2 root      0.0  0.0 kthreadd
+    3 root      0.0  0.0 ksoftirqd/0
+    5 root      0.0  0.0 kworker/0:0H
+    7 root      0.0  0.0 migration/0
+    8 root      0.0  0.0 rcuc/0
+    9 root      0.0  0.0 rcub/0
+   10 root      0.0  0.0 rcu_preempt
+   11 root      0.0  0.0 rcuop/0
+   12 root      0.0  0.0 rcuop/1
+   13 root      0.0  0.0 rcu_bh
+   14 root      0.0  0.0 rcuob/0
+   15 root      0.0  0.0 rcuob/1
+   16 root      0.0  0.0 rcu_sched
+   17 root      0.0  0.0 rcuos/0
+   18 root      0.0  0.0 rcuos/1
+
+10) fernando.ames@syccuxas01:~> ps -e -o pid,uname=USERNAME,pcpu=CPU_USAGE,pmem,comm // This command will display pid, uname, pcpu, pmem, comm for all the processes. The headers uname and pcpu will be renamed as USERNAME and CPU_USAGE respectively. 
+
+  PID USERNAME CPU_USAGE %MEM COMMAND
+    1 root           0.0  0.1 systemd
+    2 root           0.0  0.0 kthreadd
+    3 root           0.0  0.0 ksoftirqd/0
+    5 root           0.0  0.0 kworker/0:0H
+    7 root           0.0  0.0 migration/0
+    8 root           0.0  0.0 rcuc/0
+    9 root           0.0  0.0 rcub/0
+   10 root           0.0  0.0 rcu_preempt
+   11 root           0.0  0.0 rcuop/0
+   12 root           0.0  0.0 rcuop/1
+   13 root           0.0  0.0 rcu_bh
+   14 root           0.0  0.0 rcuob/0
+   15 root           0.0  0.0 rcuob/1
+   16 root           0.0  0.0 rcu_sched
+   17 root           0.0  0.0 rcuos/0
+   18 root           0.0  0.0 rcuos/1
+11) fernando.ames@syccuxas01:~>  ps -e -o pid,comm,etime // This command will display pid (Process ID), comm (Command name), etime (Elapsed time since the process started) for all the processes.
+
+  PID COMMAND             ELAPSED
+    1 systemd         45-00:36:13
+    2 kthreadd        45-00:36:13
+    3 ksoftirqd/0     45-00:36:13
+    5 kworker/0:0H    45-00:36:13
+    7 migration/0     45-00:36:13
+    8 rcuc/0          45-00:36:13
+    9 rcub/0          45-00:36:13
+   10 rcu_preempt     45-00:36:13
+   11 rcuop/0         45-00:36:13
+   12 rcuop/1         45-00:36:13
+   13 rcu_bh          45-00:36:13
+   14 rcuob/0         45-00:36:13
+   15 rcuob/1         45-00:36:13
+   16 rcu_sched       45-00:36:13
+   17 rcuos/0         45-00:36:13
+   18 rcuos/1         45-00:36:13
+
+12) fernando.ames@syccuxas01:~> watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -14' // This command will display the first 15 processes pid, uname, cmd, pmem and pcpu sorted in the order of 'decreasing pmem and decreasing pcpu' in the interval of 1 sec repeatedly.
+
+Every 1.0s: ps -e -o pid,uname,cmd,pmem,pcpu --sort...  Mon Feb 18 21:20:26 2019
+
+  PID USER     CMD                         %MEM %CPU
+ 2299 vscan    /usr/sbin/clamd             15.5  0.0
+12300 gdm      gnome-shell --mode=gdm      15.2  1.1
+25423 root     /opt/isec/ens/threatprevent  8.7  0.3
+ 2298 root     /opt/isec/ens/threatprevent  8.7  0.0
+25415 root     /opt/isec/ens/threatprevent  8.4  0.0
+ 1571 root     python /usr/bin/denyhosts.p  8.1  1.8
+ 2281 root     gdm-session-worker [pam/gdm  1.9  0.0
+ 1161 root     /usr/sbin/rsyslogd -n        0.7  0.0
+ 2003 root     /usr/lib/accounts-daemon     0.5  5.5
+ 2257 root     /opt/isec/ens/threatprevent  0.5  0.4
+ 1915 root     /usr/sbin/snmpd -r -A -LF n  0.4  0.0
+  410 root     /usr/lib/systemd/systemd-jo  0.4  0.0
+ 2106 swiagent /opt/SolarWinds/Agent/bin/P  0.3  0.1

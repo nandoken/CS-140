@@ -1,0 +1,65 @@
+
+Fernando Ames
+
+02/23/2019
+
+Lab 7 
+
+1)  Log into the school linux server. Pick a text file from your home directory for this exercise. Show the command to convert it to DOS format with a ".txt" extension. For example, the file fruit would be converted to the file fruit.txt.
+
+-fernando.ames@syccuxas01:~> mv fruit fruit.txt
+fernando.ames@syccuxas01:~> ls
+abe                 d1           info2     pr_h           summary
+abstract            d2           info3     pri_ran        temp
+awkexercise         d3           last      private        test
+bin                 dead.letter  linkfile  pr_simple      week3asnwers
+cars                es           longfile  public_html    winelist
+cars1               food         Mail      redir          winelist.gz
+ch10                fo_out       manuf     sam
+ch8                 fruit.txt    manuf2    src
+chess-engines.conf  h            manuf.sh  studentgrades
+ch_out              info1        pr2       studentscores
+
+2) On your local machine began a secure file transfer program such as PSFTP on Windows or another command-line-interface version of sftp on Linux & Mac OS. Show the command to connect to syccuxas01.pcc.edu from your local machine.
+
+fernando.ames@syccuxas01:~> sftp fernando.ames@syccuxas01.pcc.edu
+The authenticity of host 'syccuxas01.pcc.edu (192.168.134.16)' can't be established.
+ECDSA key fingerprint is 5a:e1:9e:d1:8f:8c:bc:f8:21:2a:1f:db:15:8c:c3:b6.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'syccuxas01.pcc.edu,192.168.134.16' (ECDSA) to the list of known hosts.
+Password: 
+Connected to syccuxas01.pcc.edu.
+sftp> 
+
+3) Show the sftp command to print your local directory. Next show the command to change your local directory to another directory, such as the full path to your browser's directory for Downloads. Verify that the directory changed worked by again printing your local directory.
+
+sftp> lpwd
+Local working directory: /Users/fernando.ames
+sftp> lcd Downloads
+Local working directory: /Users/fernando.ames/Downloads
+sftp> lpwd
+Local working directory: /Users/fernando.ames
+
+
+
+
+4) Show the sftp command to transfer the DOS format text file, such as fruit.txt, to your local machine. Open it up in a text editor but your local machine to verify that the transfer worked as expected.
+
+sftp> get /home/student/fernando.ames/fruit.txt
+Fetching /home/student/fernando.ames/fruit.txt to fruit.txt    
+sftp> lls
+Applications			OneDrive
+Creative Cloud Files		Pictures
+Desktop				Public
+Documents			fruit.txt
+Downloads			iCloud Drive (Archive)
+Library				iCloud Drive (Archive) - 1
+Movies				iCloud Drive (Archive) - 2
+Music				llama juego 2.png
+sftp> exit
+fernando.ames@syccuxas01:~> vi fruit.txt
+
+
+5) Why is it generally recommended to use secure file transfer utilities rather than ftp?
+
+-.sftp is secured file transfer protocol, unlike ftp, sftp uses secured mode to transfer the files. Moreover, sftp used one way connection and encrypts the data which is getting transferred in a secured way.

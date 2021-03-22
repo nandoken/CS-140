@@ -1,0 +1,181 @@
+Assigment 4
+
+Fernando Ames
+
+2/10/2019
+
+1)Create this sample file and name it studentgrades. Double check that all of the columns line up perfectly, and edit adding or subtracting space characters wherever necessary.
+-The file above contains student records. Use one or more commands which display only the records for the top five students based on GPA in descending (sorted) order, i.e., with the highest GPA student’s record displayed first. Show your session. Hint: you will likely need to use this sort command specifying the third field as a key - see the back of the book for details.
+
+ernando.ames@syccuxas01:~> ls
+abe                 ch_out       info1     manuf.sh     src
+abstract            d1           info2     pr2          studentgrades
+awkexercise         d2           info3     pr_h         summary
+bin                 d3           last      pri_ran      temp
+cars                dead.letter  linkfile  private      test
+cars1               es           longfile  pr_simple    week3asnwers
+ch10                food         Mail      public_html  winelist
+ch8                 fo_out       manuf     redir
+chess-engines.conf  h            manuf2    sam
+fernando.ames@syccuxas01:~> cat studentgrades
+John    Doe    3.54  ECE
+James   Davis  3.21  ECE
+Al      Davis  2.63  CS
+Ahmad   Rashid 3.74  MBA
+Sara    Chu    3.68  ECE
+Ling    Joy    4.00  SS
+Rick    Marsh  2.34  CS
+James   Adam   2.77  CS 
+Art     Pohm   3.00  ECE
+John    Clark  2.68  ECE
+Nabeel  Ali    3.56  EE
+Toms    Kate   3.81  ECE
+Pat     King   2.77  SS
+Jake    Zulu   3.00  CS
+John    Lee    2.64  EE
+Sunil   Raj    3.36  ECE
+Charles Right  3.31  EECS
+Daniel  Roy    3.87  ECE
+Aziz    Inan   3.75  EECS
+Lu      John   3.06  CS
+Lee     Chow   2.74  EE
+Adam    Giles  2.54  SS
+Andy    John   1.98  EECS
+fernando.ames@syccuxas01:~> sort -grk 3 studentgrades|head -n 5
+Ling    Joy    4.00  SS
+Daniel  Roy    3.87  ECE
+Toms    Kate   3.81  ECE
+Aziz    Inan   3.75  EECS
+Ahmad   Rashid 3.74  MBA
+
+
+2)Create text files info1, info2, and info3 each with different text having at most 10 lines. They can be created using vim with a few lines of text, or doing some commands like who|head > info1, etc. Once you have created the files, display all files with a single cat command.  Next, using one command append the contents of info1 and info3 to the end of info2.  Show your session.
+
+fernando.ames@syccuxas01:~> ls
+abe                 ch_out       info1     manuf.sh     src
+abstract            d1           info2     pr2          studentgrades
+awkexercise         d2           info3     pr_h         summary
+bin                 d3           last      pri_ran      temp
+cars                dead.letter  linkfile  private      test
+cars1               es           longfile  pr_simple    warscape.tar.gz
+ch10                food         Mail      public_html  week3asnwers
+ch8                 fo_out       manuf     redir        winelist
+chess-engines.conf  h            manuf2    sam
+fernando.ames@syccuxas01:~> touch info1 info2 info3
+fernando.ames@syccuxas01:~> ls
+abe          cars1               d1           food    info3     manuf     pri_ran      sam            test
+abstract     ch10                d2           fo_out  last      manuf2    private      src            week3asnwers
+awkexercise  ch8                 d3           h       linkfile  manuf.sh  pr_simple    studentgrades  winelist
+bin          chess-engines.conf  dead.letter  info1   longfile  pr2       public_html  summary
+cars         ch_out              es           info2   Mail      pr_h      redir        temp
+
+fernando.ames@syccuxas01:~> cat info1
+January 
+February
+March
+April
+May
+June
+July
+August
+September
+October
+fernando.ames@syccuxas01:~> cat info2
+Week 1
+Week 2
+Week 3
+Week 4
+Week 5
+Week 6
+Week 7
+Week 8
+Week 9
+Week 10
+fernando.ames@syccuxas01:~> cat info3
+Messi
+Cristiano
+Buffon
+Casillas
+Sterlin
+Henry
+Harry
+Thomas
+Rooney
+Kompany
+fernando.ames@syccuxas01:~> cat info1 info3 >> info2
+fernando.ames@syccuxas01:~> cat info2
+Week 1
+Week 2
+Week 3
+Week 4
+Week 5
+Week 6
+Week 7
+Week 8
+Week 9
+Week 10
+January 
+February
+March
+April
+May
+June
+July
+August
+September
+October
+Messi
+Cristiano
+Buffon
+Casillas
+Sterlin
+Henry
+Harry
+Thomas
+Rooney
+Kompany
+
+3) Use one or more commands which prints out the number of soft links in the /etc directory.  You can use a number of different commands together to achieve this (wc, awk, grep …).  If you are running into problems where the '-' character is interpreted as an option you can use '--' to indicate the end of options.  Show your session.
+
+-fernando.ames@syccuxas01:~> ls -l /usr | awk 'NR != 1 {sum += $2} END {print sum}'
+721
+
+4)Use AWK (or gawk). What command line would display the contents of studentscores file such that first names and last names are swapped?
+-fernando.ames@syccuxas01:~> touch studentscores
+fernando.ames@syccuxas01:~> ls
+abe          ch10                d3           info1     Mail      pri_ran      src            week3asnwers
+abstract     ch8                 dead.letter  info2     manuf     private      studentgrades  winelist
+awkexercise  chess-engines.conf  es           info3     manuf2    pr_simple    studentscores
+bin          ch_out              food         last      manuf.sh  public_html  summary
+cars         d1                  fo_out       linkfile  pr2       redir        temp
+cars1        d2                  h            longfile  pr_h      sam          test
+fernando.ames@syccuxas01:~> view studentscores
+fernando.ames@syccuxas01:~> awk '{print $2, $1, $3, 44, $5}' studentscores
+Jones Tom 100 44 80
+Jones Nancy 70 44 90
+Slims Terry 55 44 90
+Terry John 75 44 77
+Maier Ruth 100 44 100
+Wolfe Mike 90 44 98
+Cole Dennis 70 44 89
+Maier Ron 90 44 89
+Miller Susan 65 44 90
+Bill Mad 75 44 77
+
+5) Use AWK (or gawk). What command line would display the first and last names in studentscores of those who got 90 on their last exam?  If you are struggling take a look at the book for examples.
+-fernando.ames@syccuxas01:~> awk '$3 == 90 {print $1, $2}' studentscores
+Mike Wolfe
+Ron Maier
+
+6)Use AWK (or gawk). What command line would display the contents of the studentscores file with line numbers in front of each line?
+-fernando.ames@syccuxas01:~> awk '{printf "%3s %s\n", NR, $0}' studentscores
+  1 Tom    Jones  100 90  80
+  2 Nancy  Jones  70  80  90
+  3 Terry  Slims  55  65  90
+  4 John   Terry  75  76  77
+  5 Ruth   Maier  100 100 100
+  6 Mike   Wolfe  90  95  98
+  7 Dennis Cole   70  80  89
+  8 Ron    Maier  90  85  89
+  9 Susan  Miller 65  80  90
+ 10 Mad    Bill   75  65  77

@@ -1,0 +1,112 @@
+
+Fernando Ames
+
+02/23/2019
+
+CS 140U - Assigment 5
+
+1) What is the difference between built-in (internal) and external shell commands? How does a UNIX shell execute built-in and external commands? Explain your answer with an example.
+
+- The big difference in internal vs external command is performance. Internal command is much much faster compared to external for the simple reason that no process needs to be spawned for an internal command since it is all built-into the shell. So, as the size of a script gets bigger, using external commands a lot does add to its performance.
+
+-Example:
+                       Say to add 2 numbers say x & y:
+                       Wrong:
+                        z=`expr $x+$y`
+                        Good:
+                        let z=x+y
+
+- "Ls" is a program or file having an independent existence in the /bin directory(or /usr/bin), it is branded as an external command that actually means that the ls command is not built into the shell and these are executables present in separate file. In simple words, when we will key in the ls command, to be executed it will be found in /bin. Most commands are external in nature, but there are some which are not really found anywhere, and some which are normally not executed even if they are in one of the directories specified by PATH. “Echo” is a shell builtin.
+
+- “Echo” isn’t an external command in the sense that, when you type echo, the shell won’t look in its PATH to locate it(even if it is there in /bin). Rather, it will execute it from its own set of built-in commands that are not stored as separate files. These built-in commands, of which echo is a member, are known as internal commands.
+
+2)  Name 2 different categories of information that can be found using the ps command?
+
+- The main usage of ps(processes status) command to display the running processes of a system or user.
+It is also used to find the unresponsive processes which causing slowness to the system using stress keyword.
+Example:
+
+fernando.ames@syccuxas01:~> ps
+  PID TTY          TIME CMD
+18429 pts/37   00:00:00 bash
+18516 pts/37   00:00:00 ps
+
+3)  What is the purpose of the nice command?
+
+-The purpose of the "nice" command is to invoke a utility or shell script with a particular priority, thus giving the process more or less CPU time than other processes.
+
+4) Give the sequence of steps (with commands) for terminating a background process.
+
+-We use ps -x and kill command to find and kill the processes. If the Processes does not kill the first time then we use kill -9 command.
+
+5)   Show the command for displaying the process tree on your system for
+                   
+                   a. All the processes running on your system
+                   b. All of YOUR processes running on the system
+ 
+                  - To display processes, we use the ps command.
+
+a) To display all the processes running in the system, we use below command.
+ps -A or ps -e
+
+-fernando.ames@syccuxas01:~> ps -A
+  PID TTY          TIME CMD
+    1 ?        00:09:09 systemd
+    2 ?        00:00:01 kthreadd
+    3 ?        00:01:38 ksoftirqd/0
+    5 ?        00:00:00 kworker/0:0H
+    7 ?        00:01:01 migration/0
+    8 ?        00:00:00 rcuc/0
+    9 ?        00:00:00 rcub/0
+   10 ?        00:10:43 rcu_preempt
+   11 ?        00:09:28 rcuop/0
+   12 ?        00:09:46 rcuop/1
+   13 ?        00:00:00 rcu_bh
+   14 ?        00:00:00 rcuob/0
+   15 ?        00:00:00 rcuob/1
+
+
+b) To display the processes running on the current user, we use below command.
+               ps -x
+               -fernando.ames@syccuxas01:~> ps -x
+                PID TTY      STAT   TIME COMMAND
+               10602 ?        S      0:00 sshd: fernando.ames@pts/54
+               10603 pts/54   Ss     0:00 -bash
+               11113 pts/54   R+     0:00 ps -x
+              18426 ?        Ss     0:00 /usr/lib/systemd/systemd --user
+              18427 ?        S      0:00 (sd-pam)           
+               18428 ?        S      0:00 sshd: fernando.ames@pts/37
+              18429 pts/37   Ss+    0:00 -bash
+6)  Explain what are well-known ports? List the well-known ports numbers for the following Internet services: http, ftp, telnet, smtp, ssh.
+ -A port is an end point of the computer network from where and to information flows.
+-These are the port numbers reserved by Internet Corporation for Assigned Names and Numbers (ICANN). Each application has a designated port number.
+-http : 80
+-ftp : 20/21 
+-telnet : 23
+-smtp : 25
+-ssh : 22
+
+7) What command(s) would you use to display information about the CPU and OS in Linux?
+
+CPU: 
+cat /proc/cpuinfo
+OS:
+cat /etc/os-release
+
+8) How would you display information about the user chris at the host mit.edu using the finger command?
+
+          - finger  -p chris mit.edu
+
+
+ 9) What is anonymous ftp? How would you establish an anonymous ftp session with the host                  ftp.intel.com?
+
+-A method for giving users access to files so that they do not need to identify themselves to the user. Used for downloading public files using the FTP. We can use word anonymous when the host asked for a username and anything for the password.
+
+-Host/Server: ftp.intel.com
+-Mode/Connection Type: Normal FTP (unsecure).
+-Username: anonymous
+-Password: my email address.
+-We must choose to use Passive (PASV) data Connections.
+
+10) What is the purpose of the ssh command?
+This command is used to start the SSH client program that enables a secure connection to the SSH server on a remote machine. The ssh command is used from logging into the remote machine, transferring files between the two machines, and for executing commands on the remote machine.

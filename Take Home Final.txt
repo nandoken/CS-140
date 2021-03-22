@@ -1,0 +1,151 @@
+Fernando Ames
+03/14/2019
+CS 140U- Take Home Final
+
+1. In a bash shell script, what are the required elements of an "if" control structure?
+The required elements of an if control structure is: 
+If,then,fi
+Condition with Square brackets to hold condition or test code
+
+2. In a bash shell script, what are the optional elements of an "if" control structure?
+if [condition] ; then
+//Statements to execute
+else
+//Statements to execute
+fi
+The mandatory elements are: if, then, fi
+The optional elements are: else, elif (known as else if) .
+
+3. In a bash shell script, what are the required elements of a "while" control structure?
+
+-Answer :
+-while ,do ,done
+-Expression: Condition or test code enclosed in square brackets
+
+
+4. What is the difference between a shell variable and environment variable? Which one is considered local and which is considered global?
+
+-Difference between a shell variable and environment variable :
+
+-Environment variable : It is inherited in child processes
+
+-Shell variable : It is not inherited in child processes
+
+-Which one is considered local and which is considered global?
+
+-Local Variable : It is visible and valid within current instance of the shell
+
+-Gloabal Variable :It is visible and valid anywhere in bash shell
+
+5. List the four kinds of shell parameters/variables.
+Answer :
+
+-Local Variable
+-Environment Variable
+-Shell Variable
+-Read-Only variable
+-Global variable
+-Unsetting variable
+ 
+ 
+ 
+6. Of these four kinds, which kind do $$, $_, $#, and $?  belong to? 
+
+It belongs to $.
+
+7. What do $$, $_, $#, and $? Represent?
+
+-$$  Represents the process id or PID of the current shell.
+-$_ default parameter for a lot of functions
+-$# - Number of arguments supplied to the script
+-$? -exit status of the last command executed.
+
+8. Show the command that creates an alias named hi which lists the hidden files in the current directory.
+
+- alias hi="ls -a"
+
+-The above command creates an alias for the ls-a .ls -a list the hidden files in the current directory.
+
+
+9. Describe the actions that take place when a command ends with 
+ |& file1
+For example,
+ ./myscript  |& file1
+
+-if the command ends with& the command will run in the background
+- "|" symbol is used to send the output of the first command to the second command
+-usage :
+-ls -ltr | grep "ksh"
+-will list the files only having ksh in there filename
+-file1 can be used at the end out command as an argument to script.(Sample.sh file1)
+-or to redirect output in to file (Sample.sh >>file1 ,Sample.sh >file1)
+
+
+10. Briefly describe the following Linux commands and acronyms.
+
+-SSH: This command provides a secure encrypted connection between hosts over an insecure network.
+
+-Telnet: This command is used to communicate with other hosts using TELNET protocol. If it is invoked with a host argument, it performs an open command.
+
+-Traceroute: It is used to map the journey that a packet of information undertakes from its source to its destination
+
+-TCP: it is not a single network protocol.
+
+-It is a family of network protocol that offers various services. 
+
+-Lan: It is a communication network that interconnects a variety of devices. It is used to exchange information (data among connected devices). 
+
+-DNS: Domain Name system
+
+-It has a list of all domain names and translates them to IP addresses when needed.
+
+-FTP: file transfer protocol.
+
+-This is the standard network protocol that is used for transferring files between server and client.
+
+-ssh: secure socket shell
+
+-This is a network protocol that is used to give secure access to any resource eg: computer when using via unsecured channels
+
+-ping:This is the command used in command prompt to check whether we can communicate with another computer or some other network device over the network.
+
+-env: This is a Unix command which is used generally to print the list of environment variables.
+
+-g++: This command is used to compile the .c/.cpp codes and when using this command the files will be treated as c++ files.
+
+-gcc: This command is used to convert the .c files into binary executable files. this command doesn't treat" .c / .cpp" both files as c++ as the "g++ " command does.
+
+22. Show a command that will create a file named "etc.tar" in your home directory from recursively going through all of the files in the "/etc" directory. In other words, the "etc.tar" file will include the files in the "/etc" directory as well as all of its subdirectories. IMPORTANT: This command must work for any user as well as work from any directory. 
+The following command will create etc.tar in home directory by recursively going through all files in /etc directory.
+
+
+- sudo tar -cvf /home/etc.tar /etc
+ 
+ 
+23. In bash, multiple commands can appear on a single command line when they are separated by certain one to two character control operators. Excluding the newline command initiator, list five other control operators which separate commands. 
+
+-> ;
+This executes command right to it irrespective of whether the command left to it executed successfully or not.
+
+-> &&
+This executes command right to it only if the command left to it is executed successfully.
+
+-> ||
+This executes command right to it only if the command left to it is not executed successfully.
+
+-> | (pipe)
+This sends the standard output of command left to it to the standard input of the command right to it.
+But the standard error still goes into its default destination.
+
+-> |&
+Same as above but standard error also goes to the command right of it.
+
+
+24. Show a single compound command which first changes the permissions on a file named "mychess.conf" in the current directory so that you, your group, and everyone else are limited to read access only; Next, put the file named "mychess.conf" in the "/etc" directory and in the process rename it "chess.conf".
+
+chmod 444 mychess.conf
+
+ 
+25. Show a single compound command which will look for the files "a" and "b" in the current directory, then will print "error: files are missing!" if either file does not exist or will print absolutely nothing if they both exist. Try it out on the command line to check your answer.
+
+-[ "$(find . -name "a.*" -o -name "b.*")" ] && echo Found || echo "Error: Files are missing"

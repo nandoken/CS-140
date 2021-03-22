@@ -1,0 +1,34 @@
+Fernando Ames
+03/11/2019
+Lab 9 
+
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2019.03.11 12:22:27 =~=~=~=~=~=~=~=~=~=~=~=
+login as: fernando.ames
+Using keyboard-interactive authentication.
+Password: 
+Last login: Mon Mar 11 12:16:34 2019 from desktop-ab9f0i8.wifi.pcc.edu
+
+
+I consider a new device or technology to have been culturally accepted when
+it has been used to commit a murder.
+		-- M. Gallaher
+
+
+fernando.ames@syccuxas01:~> cp ~n[Kbej[Knjamin,[K.schaeffer15/warscape.tat[Kr.gz ~
+fernando.ames@syccuxas01:~> tar -zxvf warscape.tar.gz
+warscape.cpp
+fernando.ames@syccuxas01:~> g++ warscape.cpp
+fernando.ames@syccuxas01:~> ls -l a.out
+-rwx------ 1 fernando.ames students 71491 Mar 11 12:24 [0m[00;32ma.out[0m
+fernando.ames@syccuxas01:~> file a.out
+a.out: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32, not stripped
+fernando.ames@syccuxas01:~> exit
+logout
+
+===========================================================================================================================================
+Part 2
+
+ Explain what "tar -zxvf warscape.tar.gz" does in the above list of commands.
+
+The tar -zxvf warscape.tar.gz. "Z" means to unzip, "X" means extract files from the archive, "V" means print the filenames verbosely and "F" means the following argument is a filename.
+

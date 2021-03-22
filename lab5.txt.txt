@@ -1,0 +1,42 @@
+Lab 5
+
+Fernando Ames
+
+02/10/2019
+
+1)  Using awk, write the command that would print the line in the file longfile that contains the word "selected". This file has a lot of junk in it. So, you are just searching for the lines that contain the word “selected”. Your awk script will look into the file called longfile and once it finds all the lines that contain the word "selected" it will display the line. The output should be:
+ 
+server, or at least to a "randomly" selected one of the servers covering
+(There should be only one line)
+
+Answer:
+
+YOUR AWK COMMAND: awk '/selected/' longfile
+
+2)  Write commands (ending with awk, or you can use awk multiple times) that finds all lines containing email addresses from the file longfile, and then extracts just the e-mail address without characters such as (, ), <, >, etc., and print a label "email = " before each e-mail address. Hint you may want to review the tr command.
+
+-Answer
+
+YOUR AWK COMMAND: awk '/[Ff]rom:/||/[Tt]o:/||/[Cc]c:/ {print "email= ", $0}' longfile
+
+3)Write the awk command that would show the a user such as yourself online (you have to use a pipeline)
+
+-Answer
+
+YOUR AWK COMMAND: w| awk '/fernando/'
+
+4)Use who to find the users on our system that have the letter r or R in their first name, last name, or both first and last name but nowhere else on the rest of the line of output (i.e., after the first white space character). For instance, in the sample output below the first line has no r characters within the sub string "pts/21       2017-10-23 12:38 (jamess-iphone-2.wifi.pcc.edu)".
+ 
+-Answer
+
+ who | awk '$1 ~ /[rR]/ {printf "%-20s %s\t %s\t %s\t %s\n" , $1, $2, $3, $4, $5}'
+
+5) (1 point - easy) From the file called winelist extract a list of wines that cost less than $7.00
+Output   (it may be different depending the time you do it): 
+1977    6.99    Napa  Valley
+1977    6.75    Alexanders 
+1977    5.99    Charles Krug
+etc.
+YOUR AWK COMMAND: awk '$2 < 7.00' winelist | sort -k 1    BY YEAR.  
+
+awk '$2 < 7.00' winelist | sort -k 2   By Cost
